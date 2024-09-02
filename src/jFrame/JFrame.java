@@ -74,7 +74,6 @@ public class JFrame extends javax.swing.JFrame {
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 30, -1, -1));
         jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 339, 10));
 
-        jTDNI.setBackground(new java.awt.Color(255, 255, 255));
         jTDNI.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jPanel1.add(jTDNI, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 70, 181, -1));
 
@@ -101,7 +100,6 @@ public class JFrame extends javax.swing.JFrame {
         jTDireccion.setFocusable(false);
         jPanel1.add(jTDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 180, 181, -1));
 
-        jtTelefono.setBackground(new java.awt.Color(255, 255, 255));
         jtTelefono.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jtTelefono.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -179,7 +177,13 @@ public class JFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jTNombreActionPerformed
 
     private void jBNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBNuevoActionPerformed
-        // TODO add your handling code here:
+        jTDNI.setText(null);
+        jTNombre.setText(null);
+        jTApellido.setText(null);
+        jTDireccion.setText(null);
+        jTCiudad.setText(null);
+        jtTelefono.setText(null);
+        
     }//GEN-LAST:event_jBNuevoActionPerformed
 
     private void jtTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtTelefonoActionPerformed
