@@ -1,5 +1,6 @@
 package jFrame;
 
+import java.util.ArrayList;
 import java.util.TreeMap;
 import javax.swing.JOptionPane;
 import trabajopracticon5.Contacto;
@@ -94,6 +95,11 @@ public class Directorio extends javax.swing.JFrame {
         jBBorrar.setBackground(new java.awt.Color(204, 204, 204));
         jBBorrar.setText("Borrar");
         jBBorrar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jBBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBBorrarActionPerformed(evt);
+            }
+        });
         jPanel1.add(jBBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 320, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -148,6 +154,7 @@ public class Directorio extends javax.swing.JFrame {
         jTDireccion.setText(null);
         jTCiudad.setText(null);
         jtTelefono.setText(null);
+        jTDNI1.setText(null);
 
     }//GEN-LAST:event_jBLimpiarActionPerformed
 
@@ -164,6 +171,11 @@ public class Directorio extends javax.swing.JFrame {
         agregarContacto();
 
     }//GEN-LAST:event_jBGuardarActionPerformed
+
+    private void jBBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBorrarActionPerformed
+        borrarContacto(Long.parseLong(jtTelefono.getText()));
+        
+    }//GEN-LAST:event_jBBorrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -226,17 +238,16 @@ public class Directorio extends javax.swing.JFrame {
 
     public void agregarContacto() {
         try {
-            int dni=Integer.parseInt(jTDNI1.getText());
-            long numTel=Long.parseLong(jtTelefono.getText());
+            int dni = Integer.parseInt(jTDNI1.getText());
+            long numTel = Long.parseLong(jtTelefono.getText());
             Contacto contacto = new Contacto(dni, jTNombre.getText(), jTApellido.getText(), jTCiudad.getText(), jTDireccion.getText());
-            
-            
-            if(listContac.containsKey(numTel)){
+
+            if (listContac.containsKey(numTel)) {
                 JOptionPane.showMessageDialog(this, "Un contacto ya posee ese numero de telefono\nFavor de ingresar otro numero de telefono");
                 jtTelefono.setText(null);
-            } else{
+            } else {
                 listContac.put(numTel, contacto);
-                JOptionPane.showMessageDialog(this, "Se agrego el contacto:\n" + contacto+"\nTelefono: "+numTel);
+                JOptionPane.showMessageDialog(this, "Se agrego el contacto:\n" + contacto + "\nTelefono: " + numTel);
             }
 
         } catch (NumberFormatException ex) {
@@ -246,7 +257,44 @@ public class Directorio extends javax.swing.JFrame {
             jtTelefono.setText(null);
             //Limpiar el JTextField para que el usuario vuelva a intentar
 
-        } 
+        }
     }
-
+    
+//D-----------------------------------------
+    public ArrayList<Contacto> buscarContactos(String ciudad) {
+        //Se exige la ciudad a buscar por parametro
+        ArrayList<Contacto> listaCiudad = new ArrayList<>();
+        //La ArrayList que se pide para retornar
+        boolean aux = true;
+        //Para verificar si esa ciudad existe la listaContac
+        for (Contacto contacto : listContac.values()) {
+            //Foreach que recorra la lista de contacto principal por los valores
+            if (contacto.getCiudad().equalsIgnoreCase(ciudad)) {
+                //Se compara si la ciudades son las mismas
+                listaCiudad.add(contacto);
+                //Si son la mismas ciudades se guarda el contacto en la ArrayList listaCiudad
+                aux = false;
+                //Si existe aux se le guarda falso para el if fuera del for
+            }
+        }
+        if (aux) {
+            //Este mensaje solamente se muestra si no se encuetra la ciudad a buscar
+            JOptionPane.showMessageDialog(this, "No se encotro la ciudad " + ciudad);
+        }
+        return listaCiudad;
+    }
+    
+//E-----------------------------------------
+    public void borrarContacto(Long numero) {
+        //numero es la key a borrar
+        if (listContac.containsKey(numero)) {
+            //Se verifica si la clave existe en la listContac
+            listContac.remove(numero);
+            //Se elimina el contacto y numero por la key
+            JOptionPane.showMessageDialog(this, "Se borro el contacto " + numero);
+        } else {
+            //Si no se encuentra esa key sale un mensaje
+            JOptionPane.showMessageDialog(this, "No se encontro el contacto " + numero);
+        }
+    }
 }
