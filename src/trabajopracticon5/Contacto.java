@@ -43,6 +43,11 @@ public class Contacto {
         this.direccion = direccion;
     }
 
+    @Override
+    public String toString() {
+        return "Dni: " + dni + "\nNombre: " + nombre + "\nApellido: " + apellido + "\nCiudad: " + ciudad + "\nDireccion: " + direccion;
+    }
+
     
     
     
