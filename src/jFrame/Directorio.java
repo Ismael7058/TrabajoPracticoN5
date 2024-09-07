@@ -1,6 +1,9 @@
 package jFrame;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 import java.util.TreeMap;
 import javax.swing.JOptionPane;
 import trabajopracticon5.Contacto;
@@ -260,6 +263,20 @@ public class Directorio extends javax.swing.JFrame {
         }
     }
     
+    public Set <Long> buscarTelef (String apellido) {
+        Set <Long> set= new HashSet <> (); 
+        for (Map.Entry<Long, Contacto> entry : listContac.entrySet()) {
+            if (entry.getValue().getApellido().equalsIgnoreCase(apellido));
+                
+                set.add(entry.getKey());
+            }
+        return set; 
+        }
+    
+
+
+   
+
 //D-----------------------------------------
     public ArrayList<Contacto> buscarContactos(String ciudad) {
         //Se exige la ciudad a buscar por parametro
@@ -283,6 +300,7 @@ public class Directorio extends javax.swing.JFrame {
         }
         return listaCiudad;
     }
+    
     
 //E-----------------------------------------
     public void borrarContacto(Long numero) {
