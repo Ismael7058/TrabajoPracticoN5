@@ -273,7 +273,50 @@ public class Directorio extends javax.swing.JFrame {
     }//GEN-LAST:event_jtTelefonoActionPerformed
 
     private void jBBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBuscarActionPerformed
+String criterio = jCBTelefono.getSelectedItem().toString(); 
+    String valor = jTIngresoBuscar.getText(); 
+    jTADatoContacto.setText(""); 
 
+    switch (criterio) {
+        case "Telefono":
+            try {
+                long telefono = Long.parseLong(valor); 
+                if (listContac.containsKey(telefono)) {
+                    Contacto contacto = listContac.get(telefono);
+                    jTADatoContacto.append("Teléfono: " + telefono + "\n" + contacto.toString() + "\n\n");
+                } else {
+                    jTADatoContacto.append("No se encontró el contacto con teléfono: " + telefono + "\n");
+                }
+            } catch (NumberFormatException e) {
+                jTADatoContacto.append("Por favor ingresa un número de teléfono válido.\n");
+            }
+            break;
+            
+        case "Apellido":
+            Set<Long> telefonos = buscarTelef(valor);
+            if (!telefonos.isEmpty()) {
+                for (Long tel : telefonos) {
+                    Contacto contacto = listContac.get(tel);
+                    jTADatoContacto.append("Teléfono: " + tel + "\n" + contacto.toString() + "\n\n");
+                }
+            } else {
+                jTADatoContacto.append("No se encontraron contactos con el apellido: " + valor + "\n");
+            }
+            break;
+
+        case "Ciudad":
+            ArrayList<Contacto> contactosCiudad = buscarContactos(valor);
+            if (!contactosCiudad.isEmpty()) {
+                for (Contacto contacto : contactosCiudad) {
+                    jTADatoContacto.append(contacto.toString() + "\n\n");
+                }
+            }
+            break;
+
+        default:
+            jTADatoContacto.append("Selecciona un criterio de búsqueda válido.\n");
+            break;
+    }
     }//GEN-LAST:event_jBBuscarActionPerformed
 
     private void jCBTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBTelefonoActionPerformed
