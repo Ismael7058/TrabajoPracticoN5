@@ -10,7 +10,7 @@ import trabajopracticon5.Contacto;
 
 public class Directorio extends javax.swing.JFrame {
 
-    private TreeMap<Long, Contacto> listContac = new TreeMap<Long, Contacto>();
+    private TreeMap<Long, Contacto> listContac = new TreeMap<>();
 
     public Directorio() {
         initComponents();
@@ -273,50 +273,50 @@ public class Directorio extends javax.swing.JFrame {
     }//GEN-LAST:event_jtTelefonoActionPerformed
 
     private void jBBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBuscarActionPerformed
-String criterio = jCBTelefono.getSelectedItem().toString(); 
-    String valor = jTIngresoBuscar.getText(); 
-    jTADatoContacto.setText(""); 
+        String criterio = jCBTelefono.getSelectedItem().toString();
+        String valor = jTIngresoBuscar.getText();
+        jTADatoContacto.setText(null);
 
-    switch (criterio) {
-        case "Telefono":
-            try {
-                long telefono = Long.parseLong(valor); 
-                if (listContac.containsKey(telefono)) {
-                    Contacto contacto = listContac.get(telefono);
-                    jTADatoContacto.append("Teléfono: " + telefono + "\n" + contacto.toString() + "\n\n");
+        switch (criterio) {
+            case "Telefono":
+                try {
+                    long telefono = Long.parseLong(valor);
+                    if (listContac.containsKey(telefono)) {
+                        Contacto contacto = listContac.get(telefono);
+                        jTADatoContacto.append("Teléfono: " + telefono + "\n" + contacto.toString() + "\n\n");
+                    } else {
+                        jTADatoContacto.append("No se encontró el contacto con teléfono: " + telefono + "\n");
+                    }
+                } catch (NumberFormatException e) {
+                    jTADatoContacto.append("Por favor ingresa un número de teléfono válido.\n");
+                }
+                break;
+
+            case "Apellido":
+                Set<Long> listaTelefono = buscarTelef(jTIngresoBuscar.getText());
+
+                if (listaTelefono.isEmpty()) {
+                    JOptionPane.showMessageDialog(this, "No se encontraron telefonos asociados a este apellido");
                 } else {
-                    jTADatoContacto.append("No se encontró el contacto con teléfono: " + telefono + "\n");
+                    for (Long tel : listaTelefono) {
+                        jTADatoContacto.append("Teléfono: " + tel + "\n");
+                    }
                 }
-            } catch (NumberFormatException e) {
-                jTADatoContacto.append("Por favor ingresa un número de teléfono válido.\n");
-            }
-            break;
-            
-        case "Apellido":
-            Set<Long> telefonos = buscarTelef(valor);
-            if (!telefonos.isEmpty()) {
-                for (Long tel : telefonos) {
-                    Contacto contacto = listContac.get(tel);
-                    jTADatoContacto.append("Teléfono: " + tel + "\n" + contacto.toString() + "\n\n");
-                }
-            } else {
-                jTADatoContacto.append("No se encontraron contactos con el apellido: " + valor + "\n");
-            }
-            break;
+                break;
 
-        case "Ciudad":
-            ArrayList<Contacto> contactosCiudad = buscarContactos(valor);
-            if (!contactosCiudad.isEmpty()) {
-                for (Contacto contacto : contactosCiudad) {
-                    jTADatoContacto.append(contacto.toString() + "\n\n");
+            case "Ciudad":
+                ArrayList<Contacto> contactosCiudad = buscarContactos(valor);
+                if (!contactosCiudad.isEmpty()) {
+                    for (Contacto contacto : contactosCiudad) {
+                        jTADatoContacto.append(contacto.toString() + "\n\n");
+                    }
                 }
-            }
-            break;
+                break;
 
-        default:
-            jTADatoContacto.append("Selecciona un criterio de búsqueda válido.\n");
-            break;
-    }
+            default:
+                jTADatoContacto.append("Selecciona un criterio de búsqueda válido.\n");
+                break;
+        }
     }//GEN-LAST:event_jBBuscarActionPerformed
 
     private void jCBTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBTelefonoActionPerformed
@@ -417,19 +417,16 @@ String criterio = jCBTelefono.getSelectedItem().toString();
     }
 
 //C-----------------------------------------    
-    public Set <Long> buscarTelef (String apellido) {
-        Set <Long> set= new HashSet <> (); 
+    public Set<Long> buscarTelef(String apellido) {
+        Set<Long> listaTelefono;
+        listaTelefono = new HashSet<>();
         for (Map.Entry<Long, Contacto> entry : listContac.entrySet()) {
-            if (entry.getValue().getApellido().equalsIgnoreCase(apellido));
-                
-                set.add(entry.getKey());
+            if (entry.getValue().getApellido().equals(apellido)) {
+                listaTelefono.add(entry.getKey());
             }
-        return set; 
         }
-    
-
-
-   
+        return listaTelefono;
+    }
 
 //D-----------------------------------------
     public ArrayList<Contacto> buscarContactos(String ciudad) {
@@ -454,8 +451,7 @@ String criterio = jCBTelefono.getSelectedItem().toString();
         }
         return listaCiudad;
     }
-    
-    
+
 //E-----------------------------------------
     public void borrarContacto(Long numero) {
         //numero es la key a borrar
