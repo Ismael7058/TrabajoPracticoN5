@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="Multi-package class diagram">
+  <ClassDiagramComponents>
+    <Class name="Directorio" package="jFrame" visibility="public" xPosition="971.0" yPosition="41.0">
+      <Fields>
+        <Field name="listContac" type="TreeMap&lt;Long, Contacto&gt;" visibility="private"/>
+        <Field name="jBBorrar" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jBBuscar" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jBGuardar" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jBLimpiar" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jCBTelefono" type="javax.swing.JComboBox&lt;String&gt;" visibility="private"/>
+        <Field name="jLApellido" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLBuscar" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLCiudad" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLDNI" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLDireccion" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLFormulario" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLNombre" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLTelefono" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLTipoDate" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLingreso" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jPanel1" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel2" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jScrollPane3" type="javax.swing.JScrollPane" visibility="private"/>
+        <Field name="jSeparator1" type="javax.swing.JSeparator" visibility="private"/>
+        <Field name="jSeparator3" type="javax.swing.JSeparator" visibility="private"/>
+        <Field name="jTADatoContacto" type="javax.swing.JTextArea" visibility="private"/>
+        <Field name="jTApellido" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="jTCiudad" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="jTDNI" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="jTDireccion" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="jTIngresoBuscar" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="jTNombre" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="jTabbedPane1" type="javax.swing.JTabbedPane" visibility="private"/>
+        <Field name="jtTelefono" type="javax.swing.JTextField" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+        <Method name="jBGuardarActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="jBLimpiarActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="jBBorrarActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="jtTelefonoActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="jBBuscarActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="jCBTelefonoActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="args"/>
+        </Method>
+        <Method name="agregarContacto" returnType="void" visibility="public"/>
+        <Method name="buscarTelef" returnType="Set&lt;Long&gt;" visibility="public">
+          <Argument type="String" name="apellido"/>
+        </Method>
+        <Method name="buscarContactos" returnType="ArrayList&lt;Contacto&gt;" visibility="public">
+          <Argument type="String" name="ciudad"/>
+        </Method>
+        <Method name="borrarContacto" returnType="void" visibility="public">
+          <Argument type="Long" name="numero"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Contacto" package="trabajopracticon5" visibility="public" xPosition="120.0" yPosition="317.0">
+      <Fields>
+        <Field name="dni" type="int" visibility="private"/>
+        <Field name="nombre" type="String" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="int" name="dni"/>
+          <Argument type="String" name="nombre"/>
+          <Argument type="String" name="apellido"/>
+          <Argument type="String" name="ciudad"/>
+          <Argument type="String" name="direccion"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getDni" returnType="int" visibility="public"/>
+        <Method name="setDni" returnType="void" visibility="public">
+          <Argument type="int" name="dni"/>
+        </Method>
+        <Method name="getNombre" returnType="String" visibility="public"/>
+        <Method name="setNombre" returnType="void" visibility="public">
+          <Argument type="String" name="nombre"/>
+        </Method>
+        <Method name="getApellido" returnType="String" visibility="public"/>
+        <Method name="setApellido" returnType="void" visibility="public">
+          <Argument type="String" name="apellido"/>
+        </Method>
+        <Method name="getCiudad" returnType="String" visibility="public"/>
+        <Method name="setCiudad" returnType="void" visibility="public">
+          <Argument type="String" name="ciudad"/>
+        </Method>
+        <Method name="getDireccion" returnType="String" visibility="public"/>
+        <Method name="setDireccion" returnType="void" visibility="public">
+          <Argument type="String" name="direccion"/>
+        </Method>
+        <Method name="toString" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Main" package="trabajopracticon5" visibility="public" xPosition="255.0" yPosition="41.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String[]" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <HasRelation name="Usa" source="jFrame.Directorio" target="trabajopracticon5.Contacto" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="TreeMap&lt;Long, Contacto&gt;"/>
+  </ClassDiagramRelations>
+</ClassDiagram>

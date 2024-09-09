@@ -285,7 +285,7 @@ public class Directorio extends javax.swing.JFrame {
                         Contacto contacto = listContac.get(telefono);
                         jTADatoContacto.append("Teléfono: " + telefono + "\n" + contacto.toString() + "\n\n");
                     } else {
-                        jTADatoContacto.append("No se encontró el contacto con teléfono: " + telefono + "\n");
+                        JOptionPane.showMessageDialog(this, "No se encontraron contactos asociados a este telefono");
                     }
                 } catch (NumberFormatException e) {
                     jTADatoContacto.append("Por favor ingresa un número de teléfono válido.\n");
